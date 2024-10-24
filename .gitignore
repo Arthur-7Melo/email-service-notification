@@ -1,0 +1,23 @@
+# Diretórios e arquivos relacionados ao Go
+/bin/
+/build/
+/dist/
+/vendor/
+
+# Configurações do editor/IDE
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# Docker
+docker-compose.override.yml
+.env
+
+# Arquivos de compilação
+*.out
+*.exe
+
+# Cache do Go e build do módulo
+/.cache/
+/*.test
