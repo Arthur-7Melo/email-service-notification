@@ -17,6 +17,7 @@ type Config struct {
 }
 
 func LoadConfig() (*Config, error) {
+	logger.Info("Iniciando carregamento de variáveis de ambiente")
 	if err := godotenv.Load(); err != nil{
 		logger.Error("Erro ao carregar variáveis de ambiente .env", err)
 		return nil, err
