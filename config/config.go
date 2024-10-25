@@ -1,9 +1,9 @@
 package config
 
 import (
-	"log"
 	"os"
 
+	"github.com/Arthur-7Melo/email-service-notification.git/config/logger"
 	"github.com/joho/godotenv"
 )
 
@@ -16,9 +16,10 @@ type Config struct {
 	SMTPPassword string
 }
 
-func LoadConfig() *Config {
+func LoadConfig() (*Config, error) {
 	if err := godotenv.Load(); err != nil{
-		log.Fatal("Erro ao carregar variáveis de ambiente .env")
+		logger.Error("Erro ao carregar variáveis de ambiente .env", err)
+		return nil, err
 	}
 
 	return &Config{
@@ -28,5 +29,5 @@ func LoadConfig() *Config {
 		SMTPPort: os.Getenv("SMTP_PORT"),
 		SMTPUser: os.Getenv("SMTP_USER"),
 		SMTPPassword: os.Getenv("SMTP_PASSWORD"),
-	}
+	}, nil
 }
