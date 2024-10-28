@@ -2,10 +2,12 @@ package main
 
 import (
 	"context"
+	"os"
 
 	"github.com/Arthur-7Melo/email-service-notification.git/config"
 	"github.com/Arthur-7Melo/email-service-notification.git/config/logger"
 	"github.com/Arthur-7Melo/email-service-notification.git/db"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -18,4 +20,9 @@ func main() {
 	db.ConnectMongoDb(cfg)
 	defer db.MongoClient.Disconnect(context.TODO())
 
+	router := gin.Default()
+	router.GET("/send-email")
+
+	port := os.Getenv("PORT")
+	router.Run(":" + port)
 }
